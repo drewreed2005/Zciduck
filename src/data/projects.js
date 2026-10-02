@@ -25,7 +25,7 @@ export const projects = [
         technicalSkills: ["C", "Process scheduling", "Synchronization", "Data structures"],
         softSkills: ["Solo programming", "Working to specification", "Documentation", "Time management"],
         focus: "30% 50%",
-        links: [{ label: "Design Document", url: "/", type: "file" }],
+        links: [{ label: "Design Document", url: "/public/projects/files/pintos_threads_design_doc", type: "file" }],
         image: "",
         position: "",
         focus: "",

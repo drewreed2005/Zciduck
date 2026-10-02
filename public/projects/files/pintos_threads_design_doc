@@ -247,49 +247,49 @@ the beginning of this depiction.
 
 The actual donation happens here:
 
- ————Thread H————————————————————————————————————————————————————————————
-| lock_acquire(lock_A) —| (lock_A is already held by M)					 |
-| |						|												 |
-| |					    |—> donate_priority(lock_A)						 |
-| |						   |											 |
-| |						   |—> donor = H, recipient = lock_A->holder = M |
-| |							—> H->priority > M->priority				 |
-| |	M priority = 50			   |—> M->priority (30) = H->priority (50)	 |
-| |								—> M->waiting_lock = lock_B (cont.)		 |
-| |						   |											 |
-| |						   |—> donor = H, recipient = lock_B->holder = L |
-| |							—> H->priority > L->priority				 |
-| |	L priority = 50		   |—> L->priority (10) = H->priority (50)		 |
-| |							—> L->waiting_lock = NULL (break)		 	 |
-| |						   											 	 |
-| |—> Add H to semaphore waiting list and block							 |
-|																		 |
-| (BLOCKED)						   										 |
- ————————————————————————————————————————————————————————————————————————
+ ----Thread H---------------------------------------------------------------------------
+| lock_acquire(lock_A) -| (lock_A is already held by M)					|
+| |	                |								|
+| |	                |-> donate_priority(lock_A)					|
+| |				    |							|
+| |				    |-> donor = H, recipient = lock_A->holder = M       |
+| |					 -> H->priority > M->priority			|
+| |	M priority = 50	            |-> M->priority (30) = H->priority (50)	        |
+| |				         -> M->waiting_lock = lock_B (cont.)		|
+| |				    |							|
+| |				    |-> donor = H, recipient = lock_B->holder = L       |
+| |				         -> H->priority > L->priority			|
+| |	L priority = 50		    |-> L->priority (10) = H->priority (50)		|
+| |				         -> L->waiting_lock = NULL (break)		|
+| |						   					|
+| |-> Add H to semaphore waiting list and block					  	|
+|											|
+| (BLOCKED)						   				|
+ ---------------------------------------------------------------------------------------
 |
 |
 (Scheduler: L is highest priority and ready)
 |
 V
- ————Thread L————————————————————————————————————————————————————————————
-|																		 |
-| (RUNS UNTIL DONE WITH LOCK_B) —> lock_release(lock_B)					 |
-| (RECALCULATES THREAD L PRIORITY WITHOUT DONATION VALUE)				 |
-| (UNBLOCKS HIGHEST PRIORITY WAITER ON SEMAPHORE (M) AND YIELDS)		 |
-|																		 |
- ————————————————————————————————————————————————————————————————————————
+ ----Thread L------------------------------------------------------------
+|								   	 |
+| (RUNS UNTIL DONE WITH LOCK_B) -> lock_release(lock_B)			 |
+| (RECALCULATES THREAD L PRIORITY WITHOUT DONATION VALUE)		 |
+| (UNBLOCKS HIGHEST PRIORITY WAITER ON SEMAPHORE (M) AND YIELDS)	 |
+|									 |
+ ------------------------------------------------------------------------
 |
 |
 (Scheduler: M (just unblocked, added to the ready list) is highest priority)
 |
 V
- ————Thread M————————————————————————————————————————————————————————————
-|																		 |
-| (RUNS UNTIL DONE WITH LOCK_A) —> lock_release(lock_A)					 |
-| (RECALCULATES THREAD M PRIORITY WITHOUT DONATION VALUE)				 |
-| (UNBLOCKS HIGHEST PRIORITY WAITER ON SEMAPHORE (H) AND YIELDS)		 |
-|																		 |
- ————————————————————————————————————————————————————————————————————————
+ ----Thread M------------------------------------------------------------
+|									 |
+| (RUNS UNTIL DONE WITH LOCK_A) -> lock_release(lock_A)			 |
+| (RECALCULATES THREAD M PRIORITY WITHOUT DONATION VALUE)		 |
+| (UNBLOCKS HIGHEST PRIORITY WAITER ON SEMAPHORE (H) AND YIELDS)	 |
+|									 |
+ ------------------------------------------------------------------------
 |
 |
 (Scheduler: H (just unblocked, added to the ready list) is highest priority)
@@ -567,16 +567,16 @@ default in the actual program.
 timer  recent_cpu    priority   thread
 ticks   A   B   C   A   B   C   to run
 -----  --  --  --  --  --  --   ------
- 0	    0	0	0  63  61  59   A
+ 0      0   0   0  63  61  59   A
  4      4   0   0  62  61  59   A
- 8		8   0   0  61  61  59   A or B (tie) 		—> chose A
+ 8      8   0   0  61  61  59   A or B (tie)        -> chose A
 12     12   0   0  60  61  59   B
-16	   12   4   0  60  60  59   A or B (tie) 		—> chose B
-20	   12	8	0  60  59  59	A
-24	   16	8	0  59  59  59	A, B, or C (tie) 	—> chose A
-28	   20	8	0  58  59  59	B or C (tie)	 	—> chose B
-32	   20  12	0  58  58  59	C
-36	   20  12	4  58  58  58	A, B, or C (tie)
+16     12   4   0  60  60  59   A or B (tie)        -> chose B
+20     12   8   0  60  59  59   A
+24     16   8   0  59  59  59   A, B, or C (tie)    -> chose A
+28     20   8   0  58  59  59   B or C (tie)        -> chose B
+32     20  12   0  58  58  59   C
+36     20  12   4  58  58  58   A, B, or C (tie)
 
 
 >> C3: Did any ambiguities in the scheduler specification make values
