@@ -21,3 +21,28 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
 .nav a { color: var(--text); margin-left: 1.5rem; opacity: .7; }
 .nav a.active, .nav a:hover { opacity: 1; text-decoration: none; }
 .nav .brand { margin: 0; font-weight: 700; opacity: 1; }
+
+/* simple page styling */
+.home { min-height: 100vh; display: grid; align-content: center; padding: 0 clamp(1.5rem, 8vw, 8rem); }
+.home h1 { font-size: clamp(2.5rem, 7vw, 5.5rem); margin: .2em 0; }
+.eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .15em; font-size: .85rem; }
+.lede { color: var(--muted); font-size: 1.25rem; max-width: 36ch; }
+.button { display: inline-block; margin-top: 1.5rem; padding: .8rem 1.4rem; border: 1px solid var(--accent); border-radius: 999px; width: fit-content; }
+.button:hover { background: var(--accent); color: #000; text-decoration: none; }
+
+/* portfolio intro */
+.intro { padding: 8rem clamp(1.5rem, 8vw, 8rem) 4rem; }
+.intro h1 { font-size: clamp(2.2rem, 5vw, 4rem); margin: 0; }
+.intro p { color: var(--muted); }
+
+/* project bands */
+.stack { padding-bottom: var(--slant); }
+.project {
+    position: relative; min-height: 80vh; display: flex; align-items: center;
+    padding: calc(var(--slant) + 3rem) clamp(1.5rem, 8vw, 8rem);
+    margin-top: calc(var(--slant) * -1 + var(--gap));
+    background: linear-gradient(135deg, #1b2230, #0f1117);
+    clip-path: polygon(0 var(--slant), 100% 0, 100% calc(100% - var(--slant)), 0 100%);
+}
+.project:first-child { margin-top: 0; }
+.project.right { justify-content: flex-end; }
