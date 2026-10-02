@@ -1,7 +1,7 @@
 import { projects } from "../data/projects.js";
 import ProjectSection from "../components/ProjectSection.jsx";
 
-const sorted = [...projects].sort((a, b) => a.date.localeCompare(b.date)); // oldest first; swap a/b for newest first
+const sorted = [...projects].sort((a, b) => b.date.localeCompare(a.date)); // oldest first; swap a/b for newest first
 
 function tally(key) {
     const counts = {};

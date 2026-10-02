@@ -46,3 +46,44 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
 }
 .project:first-child { margin-top: 0; }
 .project.right { justify-content: flex-end; }
+
+.bg { position: absolute; inset: 0; background-image: var(--bg); background-size: cover; background-position: center; }
+.blurred { filter: blur(14px) brightness(.45) saturate(.9); transform: scale(1.08); }
+.sharp {
+    filter: brightness(.7);
+    -webkit-mask-image: radial-gradient(ellipse 38% 45% at var(--focus), #000 0%, transparent 100%);
+            mask-image: radial-gradient(ellipse 38% 45% at var(--focus), #000 0%, transparent 100%);
+}
+.scrim { position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(11,12,16,.7), rgba(11,12,16,.1) 30%, rgba(11,12,16,.1) 70%, rgba(11,12,16,.7)); }
+
+.panel { position: relative; max-width: 620px; padding: 2rem 2.2rem;
+    background: rgba(11,12,16,.62); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.08); border-radius: 16px; }
+.panel time { color: var(--accent); font-size: .85rem; letter-spacing: .1em; }
+.panel h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin: .2em 0 .4em; }
+.summary { font-size: 1.1rem; }
+.panel ul { color: var(--muted); padding-left: 1.1rem; }
+
+/* Reveal on scroll */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s ease; }
+.in-view .reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { transition: none; opacity: 1; transform: none; } }
+
+/* Chips, links */
+.chips { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0; }
+.chip { padding: .2rem .7rem; font-size: .8rem; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; color: var(--text); }
+.chip small { color: var(--muted); }
+.links { display: flex; gap: 1.2rem; }
+
+/* Skills + resources */
+.plain { padding: 4rem clamp(1.5rem, 8vw, 8rem); max-width: 1100px; }
+.skill-block { margin-bottom: 2.5rem; }
+.resources { list-style: none; padding: 0; }
+.resources li { padding: .5rem 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+.resources span { color: var(--muted); }
+
+@media (max-width: 700px) {
+    .project, .project.right { justify-content: center; }
+    .panel { padding: 1.4rem; }
+}
