@@ -9,9 +9,9 @@ export default function App() {
         <>
             <Nav />
             <Routes>
-                <Route path="/" element={<Home />} />
+                { /* <Route path="/" element={<Home />} />
                 <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog" element={<Blog />} /> */}
             </Routes>
         </>
     );
