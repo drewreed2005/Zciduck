@@ -8,6 +8,7 @@
     font-family: "Inter", system-ui, sans-serif;
     color-scheme: dark;
 }
+html, body { overflow-x: clip; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
 a { color: var(--accent); text-decoration: none; }
@@ -31,24 +32,35 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
 .button:hover { background: var(--accent); color: #000; text-decoration: none; }
 
 /* portfolio intro */
-.intro { padding: 8rem clamp(1.5rem, 8vw, 8rem) 4rem; }
+.intro { padding: 6rem clamp(1.5rem, 8vw, 8rem) 1rem; }
 .intro h1 { font-size: clamp(2.2rem, 5vw, 4rem); margin: 0; }
 .intro p { color: var(--muted); }
 
 /* project bands */
-.stack { padding-bottom: var(--slant); }
+.stack {
+    position: relative;
+    isolation: isolate;      /* keeps the projects' z-index values from escaping the stack */
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.stack + .plain { padding-top: 3rem; }   /* breathing room under the last slant */
+
 .project {
-    position: relative; min-height: 80vh; display: flex; align-items: center;
-    padding: calc(var(--slant) + 3rem) clamp(1.5rem, 8vw, 8rem);
+    position: relative; min-height: 70vh; display: flex; align-items: center;
+    padding: calc(var(--slant) + 2rem) clamp(1.5rem, 8vw, 8rem);
     margin-top: calc(var(--slant) * -1 + var(--gap));
     background: linear-gradient(135deg, #1b2230, #0f1117);
     clip-path: polygon(0 var(--slant), 100% 0, 100% calc(100% - var(--slant)), 0 100%);
+    overflow: hidden;
 }
 .project:first-child { margin-top: 0; }
 .project.right { justify-content: flex-end; }
 
 .bg { position: absolute; inset: 0; background-image: var(--bg); background-size: cover; background-position: center; }
-.blurred { filter: blur(14px) brightness(.45) saturate(.9); transform: scale(1.08); }
+.blurred {
+    inset: -24px;                      /* bleeds past the edges so blur never fades to transparent */
+    filter: blur(14px) brightness(.45) saturate(.9);
+}
 .sharp {
     filter: brightness(.7);
     -webkit-mask-image: radial-gradient(ellipse 38% 45% at var(--focus), #000 0%, transparent 100%);
@@ -57,7 +69,7 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
 .scrim { position: absolute; inset: 0;
     background: linear-gradient(to bottom, rgba(11,12,16,.7), rgba(11,12,16,.1) 30%, rgba(11,12,16,.1) 70%, rgba(11,12,16,.7)); }
 
-.panel { position: relative; max-width: 620px; padding: 2rem 2.2rem;
+.panel { position: relative; max-width: 700px; padding: 2rem 2.2rem;
     background: rgba(11,12,16,.62); backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,.08); border-radius: 16px; }
 .panel time { color: var(--accent); font-size: .85rem; letter-spacing: .1em; }
@@ -65,20 +77,34 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
 .summary { font-size: 1.1rem; }
 .panel ul { color: var(--muted); padding-left: 1.1rem; }
 
-/* Reveal on scroll */
+.skills { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.25rem 0 .5rem;
+    padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.1); }
+.skills h4 { margin: 0 0 .4rem; font-size: .72rem; text-transform: uppercase;
+    letter-spacing: .12em; color: var(--muted); }
+
+@media (max-width: 700px) { .skills { grid-template-columns: 1fr; } }
+
+/* revealing on scroll */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s ease; }
 .in-view .reveal { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { transition: none; opacity: 1; transform: none; } }
 
-/* Chips, links */
+/* chips, links */
 .chips { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0; }
 .chip { padding: .2rem .7rem; font-size: .8rem; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; color: var(--text); }
 .chip small { color: var(--muted); }
+.chips.tight { margin: 0; gap: .35rem; }
+.chip.tech { border-color: rgba(124,240,201,.45); }            /* accent-tinted */
+.chip.soft { border-color: rgba(255,255,255,.2); color: var(--muted); }
+.chip.tag { border: none; padding-left: 0; color: var(--muted); }
+.chips.tags { margin: .75rem 0; }
 .links { display: flex; gap: 1.2rem; }
 
-/* Skills + resources */
-.plain { padding: 4rem clamp(1.5rem, 8vw, 8rem); max-width: 1100px; }
-.skill-block { margin-bottom: 2.5rem; }
+/* skills + resources */
+.plain { padding: 2rem clamp(1.5rem, 8vw, 8rem); max-width: 1100px; }
+.plain h2 { margin: 0 0 1.25rem; font-size: 1.6rem; }
+.skill-block { margin-bottom: 1.5rem; }
+.skill-block .chips { margin: .5rem 0; }
 .resources { list-style: none; padding: 0; }
 .resources li { padding: .5rem 0; border-bottom: 1px solid rgba(255,255,255,.08); }
 .resources span { color: var(--muted); }

@@ -26,31 +26,32 @@ export default function Portfolio() {
     const resources = sorted.flatMap((p) => p.links.map((l) => ({ ...l, project: p.title })));
     return (
         <main>
-        <div className="intro">
-            <h1>Portfolio</h1>
-            <p>Selected projects, in chronological order.</p>
-        </div>
+            <div className="intro">
+                <h1>Portfolio</h1>
+                <p>Selected projects, in chronological order.</p>
+            </div>
 
-        <div className="stack">
-            {sorted.map((p, i) => <ProjectSection key={p.id} p={p} index={i} />)}
-        </div>
+            <div className="stack">
+                {sorted.map((p, i) => <ProjectSection key={p.id} p={p} index={i} />)}
+            </div>
 
-        <section className="plain">
-            <SkillBlock title="Technical skills" items={tally("technicalSkills")} />
-            <SkillBlock title="Non-technical skills" items={tally("softSkills")} />
-        </section>
+            <section className="plain">
+                <h2>Across all projects</h2>
+                <SkillBlock title="Technical skills" items={tally("technicalSkills")} />
+                <SkillBlock title="Non-technical skills" items={tally("softSkills")} />
+            </section>
 
-        <section className="plain">
-            <h3>Resources</h3>
-            <ul className="resources">
-            {resources.map((r) => (
-                <li key={r.url}>
-                <a href={r.url} target="_blank" rel="noreferrer">{r.label} ↗</a>
-                <span> {r.project}{r.type === "demo" ? " · live" : ""}</span>
-                </li>
-            ))}
-            </ul>
-        </section>
+            <section className="plain">
+                <h2>Resources</h2>
+                <ul className="resources">
+                    {resources.map((r) => (
+                    <li key={r.url}>
+                        <a href={r.url} target="_blank" rel="noreferrer">{r.label} ↗</a>
+                        <span> {r.project}{r.type === "demo" ? " · live" : ""}</span>
+                    </li>
+                    ))}
+                </ul>
+            </section>
         </main>
     );
 }

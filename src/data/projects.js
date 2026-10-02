@@ -1,40 +1,34 @@
 export const projects = [
     {
-        id: "example-project",
-        title: "Example Project",
-        date: "2026-08",                       // YYYY-MM, used for chronological sort
-        summary: "One or two sentences on what it is and why it exists.",
-        details: [                             // 2-4 short bullets: what you did / what you learned
-            "Built X using Y to solve Z.",
-            "Designed the data model and API.",
-        ],
-        tags: ["Full-stack", "Solo", "Hackathon"],   // free-form, anything goes
-        technicalSkills: ["React", "Node.js", "PostgreSQL"],
+        id: "fastapi-pages",
+        title: "FastAPI + GitHub Pages App",
+        date: "2025-01",
+        summary: "…",
+        details: ["…"],
+        tags: ["Full-stack", "Solo"],
+        technicalSkills: ["Python", "FastAPI", "JavaScript", "HTML/CSS", "REST APIs", "GitHub Pages"],
         softSkills: ["Scoping", "Documentation"],
-        image: "/projects/example.png",        // optional; falls back to a gradient
-        focus: "70% 30%",                      // where the sharp patch sits (x% y%)
-        links: [
-            { label: "GitHub", url: "https://github.com/you/repo", type: "repo" },
-            { label: "Live demo", url: "https://example.com", type: "demo" },
-        ],
+        focus: "70% 30%",
+        links: [{ label: "GitHub", url: "…", type: "repo" }],
+        image: "",
+        position: "",
+        focus: "",
+        dim: ""
     },
     {
-        id: "example-project",
-        title: "Example Project",
-        date: "2024-03",                       // YYYY-MM, used for chronological sort
-        summary: "One or two sentences on what it is and why it exists.",
-        details: [                             // 2-4 short bullets: what you did / what you learned
-            "Built X using Y to solve Z.",
-            "Designed the data model and API.",
-        ],
-        tags: ["Full-stack", "Solo", "Hackathon"],   // free-form, anything goes
-        technicalSkills: ["React", "Node.js", "PostgreSQL"],
-        softSkills: ["Scoping", "Documentation"],
-        image: "/projects/example.png",        // optional; falls back to a gradient
-        focus: "70% 30%",                      // where the sharp patch sits (x% y%)
-        links: [
-            { label: "GitHub", url: "https://github.com/you/repo", type: "repo" },
-            { label: "Live demo", url: "https://example.com", type: "demo" },
-        ],
+        id: "pintos",
+        title: "Pintos OS",
+        date: "2024-05",
+        summary: "…",
+        details: ["…"],
+        tags: ["Systems", "Coursework", "Team"],
+        technicalSkills: ["C", "Process scheduling", "Synchronization", "Data structures"],
+        softSkills: ["Solo programming", "Working to specification", "Documentation", "Time management"],
+        focus: "30% 50%",
+        links: [{ label: "Design Document", url: "/", type: "file" }],
+        image: "",
+        position: "",
+        focus: "",
+        dim: ""
     },
 ];
