@@ -6,13 +6,13 @@ import Blog from "./pages/Blog.jsx";
 
 export default function App() {
     return (
-    <>
-        <Nav />
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/blog" element={<Blog />} />
-        </Routes>
-    </>
+        <>
+            <Nav />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/blog" element={<Blog />} />
+            </Routes>
+        </>
     );
 }
