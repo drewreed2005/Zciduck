@@ -1,3 +1,56 @@
+import { projects } from "../data/projects.js";
+import ProjectSection from "../components/ProjectSection.jsx";
 
+const sorted = [...projects].sort((a, b) => a.date.localeCompare(b.date)); // oldest first; swap a/b for newest first
 
-export default function Portfolio() {}
+function tally(key) {
+    const counts = {};
+    projects.forEach((p) => p[key].forEach((s) => (counts[s] = (counts[s] || 0) + 1)));
+    return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+}
+
+function SkillBlock({ title, items }) {
+    return (
+        <div className="skill-block">
+        <h3>{title}</h3>
+        <div className="chips">
+            {items.map(([name, n]) => (
+            <span key={name} className="chip">{name} <small>×{n}</small></span>
+            ))}
+        </div>
+        </div>
+    );
+}
+
+export default function Portfolio() {
+    const resources = sorted.flatMap((p) => p.links.map((l) => ({ ...l, project: p.title })));
+    return (
+        <main>
+        <div className="intro">
+            <h1>Portfolio</h1>
+            <p>Selected projects, in chronological order.</p>
+        </div>
+
+        <div className="stack">
+            {sorted.map((p, i) => <ProjectSection key={p.id} p={p} index={i} />)}
+        </div>
+
+        <section className="plain">
+            <SkillBlock title="Technical skills" items={tally("technicalSkills")} />
+            <SkillBlock title="Non-technical skills" items={tally("softSkills")} />
+        </section>
+
+        <section className="plain">
+            <h3>Resources</h3>
+            <ul className="resources">
+            {resources.map((r) => (
+                <li key={r.url}>
+                <a href={r.url} target="_blank" rel="noreferrer">{r.label} ↗</a>
+                <span> {r.project}{r.type === "demo" ? " · live" : ""}</span>
+                </li>
+            ))}
+            </ul>
+        </section>
+        </main>
+    );
+}
