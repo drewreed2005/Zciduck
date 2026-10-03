@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function Nav() {
     return (
         <header className="nav">
-            <NavLink to="/" className="brand">Zciduck _   Drew Reed</NavLink>
+            <NavLink to="/" className="brand">Zciduck _</NavLink>
             <nav>
                 <NavLink to="/portfolio">Portfolio</NavLink>
                 <NavLink to="/blog">Blog</NavLink>
