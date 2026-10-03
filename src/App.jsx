@@ -4,8 +4,6 @@ import Home from "./pages/Home.jsx";
 import Portfolio from "./pages/Portfolio.jsx";
 import Blog from "./pages/Blog.jsx";
 
-console.log({ Nav, Home, Portfolio, Blog, Routes, Route });
-
 export default function App() {
     return (
         <>
