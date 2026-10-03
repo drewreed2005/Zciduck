@@ -27,8 +27,8 @@ export default function Portfolio() {
     return (
         <main>
             <div className="intro">
-                <h1>Portfolio</h1>
-                <p>Selected projects, in chronological order.</p>
+                <h1>Project Portfolio</h1>
+                <p>Selected projects in order from newest to oldest.</p>
             </div>
 
             <div className="stack">

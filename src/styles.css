@@ -56,10 +56,16 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
 .project:first-child { margin-top: 0; }
 .project.right { justify-content: flex-end; }
 
-.bg { position: absolute; inset: 0; background-image: var(--bg); background-size: cover; background-position: center; }
+.bg {
+    position: absolute; inset: 0;
+    background-image: var(--bg);
+    background-size: cover;
+    background-position: var(--pos);
+    background-repeat: no-repeat;
+}
 .blurred {
-    inset: -24px;                      /* bleeds past the edges so blur never fades to transparent */
-    filter: blur(14px) brightness(.45) saturate(.9);
+    inset: -24px;
+    filter: blur(var(--blur)) brightness(var(--dim)) saturate(.9);
 }
 .sharp {
     filter: brightness(.7);
