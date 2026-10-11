@@ -7,6 +7,7 @@ export default function Nav() {
             <nav>
                 <NavLink to="/portfolio">Portfolio</NavLink>
                 <NavLink to="/blog">Blog</NavLink>
+                <NavLink to="/music">Music</NavLink>
             </nav>
         </header>
     );
