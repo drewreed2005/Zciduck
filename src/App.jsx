@@ -3,6 +3,7 @@ import Nav from "./components/Nav.jsx";
 import Home from "./pages/Home.jsx";
 import Portfolio from "./pages/Portfolio.jsx";
 import Blog from "./pages/Blog.jsx";
+import Music from "./pages/Music.jsx";
 
 export default function App() {
     return (
@@ -12,6 +13,7 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/blog" element={<Blog />} />
+                <Route path="/music" element={<Music />} />
             </Routes>
         </>
     );
