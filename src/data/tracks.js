@@ -7,8 +7,8 @@ export const tracks = [
         colors: ["#5359f2", "#67ccf4", "#83ecce", "#e99e7e"],   // 1 to 4 colors; two or more makes a gradient
 
         // --- all optional ---
-        start: 0,           // playback begins here (measured in seconds)
-        // end: null,       // no end means the song will play til the end
+        // start: null,         // playback begins here (measured in seconds, starting from 0)
+        // end: null,           // no end means the song will play til the end
         date: "May 2025",
         status: "Complete",
         genre: "Breakcore",
