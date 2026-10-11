@@ -124,17 +124,37 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
 
 
 /* ---------- Music ---------- */
-.tracklist { padding: 1rem clamp(1.5rem, 8vw, 8rem) 6rem; max-width: 980px; display: grid; gap: 4.5rem; }
+/* snapping is only enabled while the Music page is mounted */
+html.snap-y { scroll-snap-type: y mandatory; }
 
-.track-wrap { position: relative; }
-
-/* breathing halo behind the card */
-.track-wrap::before {
-    content: ""; position: absolute; inset: -30px 6%; border-radius: 40px;
-    background: var(--grad); filter: blur(46px); opacity: 0; transition: opacity .8s ease;
+.music-hero {
+    min-height: 100vh; min-height: 100svh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 clamp(1.5rem, 8vw, 8rem);
+    scroll-snap-align: center; scroll-snap-stop: always;
 }
-.track-wrap.live::before { opacity: .4; animation: breathe 3.2s ease-in-out infinite; }
-@keyframes breathe { 50% { opacity: .22; transform: scaleY(1.25); } }
+
+.tracklist { display: block; max-width: none; padding: 0; }
+
+/* each track is a full-screen stage with the card centered */
+.track-wrap {
+    position: relative;
+    min-height: 100vh; min-height: 100svh;
+    display: grid; place-items: center;
+    padding: 5rem clamp(1rem, 5vw, 4rem);
+    overflow: clip;                       /* glow and particles never leak into neighbors */
+    scroll-snap-align: center; scroll-snap-stop: always;   /* one flick = one track */
+}
+.track { width: 100%; max-width: 860px; }
+
+/* stage-wide glow, stretched vertically so it radiates above and below the card */
+.track-wrap::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 55% 70% at 50% 50%, var(--c1) 0%, var(--c2) 38%, transparent 76%);
+    opacity: 0; transition: opacity .9s ease;
+}
+.track-wrap.live::before { opacity: .38; animation: breathe 3.4s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity: .2; transform: scale(1.1); } }
 
 /* particles: start behind the card's center, drift out past its top and bottom edges */
 .emit { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .6s ease; }
@@ -173,8 +193,8 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
 
 .track-main { flex: 1; min-width: 0; }
 .track-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
-.track-head h2 { margin: 0; font-size: 1.4rem; }
-.track-desc { color: var(--muted); margin: .4rem 0 0; white-space: pre-line; }
+.track-head h2 { margin-top: 0.15rem; font-size: 1.7rem; }
+.track-desc { color: var(--muted); margin: 0; white-space: pre-line; line-height: 1.8rem; }
 
 /* time/duration display */
 .scrub { display: flex; align-items: center; gap: .8rem; margin: 1.2rem 0 1rem; }

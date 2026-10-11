@@ -43,14 +43,14 @@ export default function TrackCard({ t, active, playing, time, length, onToggle, 
     // random particle parameters, generated once per card
     const particles = useMemo(
         () =>
-        Array.from({ length: 22 }, (_, i) => ({
-            x: `${6 + Math.random() * 88}%`,
-            size: 3 + Math.random() * 5,
-            dist: 130 + Math.random() * 150,
-            dur: 2.6 + Math.random() * 2.4,
-            delay: -Math.random() * 5,          // negative: already mid-flight on start
-            dir: i % 2 ? 1 : -1,                // alternate up / down
-            color: cols[i % cols.length],
+            Array.from({ length: 40 }, (_, i) => ({
+                x: `${4 + Math.random() * 92}%`,
+                size: 3 + Math.random() * 5,
+                dist: `${16 + Math.random() * 34}vh`,     // was px
+                dur: 2.8 + Math.random() * 2.6,
+                delay: -Math.random() * 5,
+                dir: i % 2 ? 1 : -1,
+                color: cols[i % cols.length],
         })),
         [t.id] // eslint-disable-line react-hooks/exhaustive-deps
     );
@@ -78,7 +78,7 @@ export default function TrackCard({ t, active, playing, time, length, onToggle, 
                 <i
                     key={i}
                     style={{
-                    "--x": p.x, "--s": `${p.size}px`, "--dist": `${p.dist}px`,
+                    "--x": p.x, "--s": `${p.size}px`, "--dist": p.dist,
                     "--dur": `${p.dur}s`, "--delay": `${p.delay}s`, "--dir": p.dir, "--pc": p.color,
                     }}
                 />
