@@ -101,19 +101,19 @@ export default function TrackCard({ t, active, playing, time, length, onToggle, 
                 <div className="track-main">
                 <div className="track-head">
                     <h2>{t.title}</h2>
-                    <div className="clock">
-                        <b>{fmt(time)}</b>
-                        <span> / {fmt(length)}</span>
-                    </div>
                 </div>
                 <p className="track-desc">{t.description}</p>
 
-                <Slider value={value} onSeek={(f) => onSeek(t, f)} />
+                <div className="scrub">
+                    <span className="time now">{fmt(time)}</span>
+                    <Slider value={value} onSeek={(f) => onSeek(t, f)} />
+                    <span className="time total">{fmt(length)}</span>
+                </div>
 
                 {(meta.length > 0 || t.tags?.length > 0) && (
                     <div className="chips tight">
-                    {meta.map((m) => <span key={m} className="chip tech">{m}</span>)}
-                    {t.tags?.map((tag) => <span key={tag} className="chip tag">#{tag}</span>)}
+                        {meta.map((m) => <span key={m} className="chip tech">{m}</span>)}
+                        {t.tags?.map((tag) => <span key={tag} className="chip tag">#{tag}</span>)}
                     </div>
                 )}
                 </div>

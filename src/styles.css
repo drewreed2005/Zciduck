@@ -121,3 +121,85 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
     .project, .project.right { justify-content: center; }
     .panel { padding: 1.4rem; }
 }
+
+
+/* ---------- Music ---------- */
+.tracklist { padding: 1rem clamp(1.5rem, 8vw, 8rem) 6rem; max-width: 980px; display: grid; gap: 4.5rem; }
+
+.track-wrap { position: relative; }
+
+/* breathing halo behind the card */
+.track-wrap::before {
+    content: ""; position: absolute; inset: -30px 6%; border-radius: 40px;
+    background: var(--grad); filter: blur(46px); opacity: 0; transition: opacity .8s ease;
+}
+.track-wrap.live::before { opacity: .4; animation: breathe 3.2s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity: .22; transform: scaleY(1.25); } }
+
+/* particles: start behind the card's center, drift out past its top and bottom edges */
+.emit { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .6s ease; }
+.track-wrap.live .emit { opacity: 1; }
+.emit i {
+    position: absolute; left: var(--x); top: 50%;
+    width: var(--s); height: var(--s); border-radius: 50%;
+    background: var(--pc); box-shadow: 0 0 10px var(--pc);
+    opacity: 0; animation: drift var(--dur) ease-out var(--delay) infinite;
+    animation-play-state: paused;
+}
+.track-wrap.live .emit i { animation-play-state: running; }
+@keyframes drift {
+    0%   { opacity: 0; transform: translateY(0) scale(.5); }
+    20%  { opacity: .9; }
+    100% { opacity: 0; transform: translateY(calc(var(--dir) * var(--dist))) scale(1.3); }
+}
+
+/* card */
+.track {
+    position: relative; z-index: 1; display: flex; gap: 1.4rem; align-items: flex-start;
+    padding: 1.5rem 1.7rem; border-radius: 18px;
+    background: rgba(14,15,21,.94); border: 1px solid rgba(255,255,255,.08);
+    transition: border-color .5s ease;
+}
+.track-wrap.active .track { border-color: color-mix(in srgb, var(--c1) 65%, transparent); }
+
+.play {
+    flex: none; width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer;
+    display: grid; place-items: center; color: #fff; background: var(--grad);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--c1) 55%, transparent);
+    transition: transform .15s ease;
+}
+.play:hover { transform: scale(1.07); }
+.play svg { filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
+
+.track-main { flex: 1; min-width: 0; }
+.track-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.track-head h2 { margin: 0; font-size: 1.4rem; }
+.track-desc { color: var(--muted); margin: .4rem 0 0; white-space: pre-line; }
+
+/* time/duration display */
+.scrub { display: flex; align-items: center; gap: .8rem; margin: 1.2rem 0 1rem; }
+.scrub .slider { flex: 1; margin: 0; }   /* the row now owns the vertical spacing */
+
+.time { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums; font-size: .85rem; color: var(--muted);
+    min-width: 2.6rem; white-space: nowrap; }
+.time.now { text-align: right; color: var(--text); }
+.time.total { text-align: left; }
+.track-wrap.live .time.now { text-shadow: 0 0 14px var(--c1), 0 0 4px var(--c2); }
+
+/* custom slider */
+.slider { position: relative; height: 6px; margin: 1.2rem 0 1rem; border-radius: 999px;
+    background: rgba(255,255,255,.12); cursor: pointer; touch-action: none; }
+.slider::before { content: ""; position: absolute; inset: -12px 0; }   /* bigger hit area */
+.slider-fill { position: absolute; inset: 0 auto 0 0; border-radius: inherit; background: var(--grad);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--c1) 70%, transparent); }
+.slider-thumb { position: absolute; top: 50%; width: 14px; height: 14px; border-radius: 50%;
+    background: #fff; transform: translate(-50%, -50%); opacity: 0; transition: opacity .2s;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--c2) 35%, transparent), 0 0 14px var(--c2); }
+.track-wrap.active .slider-thumb, .slider:hover .slider-thumb, .slider:focus-visible .slider-thumb { opacity: 1; }
+.slider:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 8px; }
+
+@media (max-width: 600px) { .track { flex-direction: column; } }
+@media (prefers-reduced-motion: reduce) {
+    .emit i, .track-wrap.live::before { animation: none; }
+}
