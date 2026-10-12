@@ -147,18 +147,22 @@ html.snap-y { scroll-snap-type: y mandatory; }
 }
 .track { width: 100%; max-width: 860px; }
 
-/* stage-wide glow, stretched vertically so it radiates above and below the card */
+/* stage-wide glow, stretched vertically so it radiates above and below the card; fades in and out */
 .track-wrap::before {
     content: ""; position: absolute; inset: 0; pointer-events: none;
     background: radial-gradient(ellipse 55% 70% at 50% 50%, var(--c1) 0%, var(--c2) 38%, transparent 76%);
-    opacity: 0; transition: opacity .9s ease;
+    opacity: 0;
+    transition: opacity 1.5s ease;          /* fade OUT: slow and soft */
 }
-.track-wrap.live::before { opacity: .38; animation: breathe 3.4s ease-in-out infinite; }
-@keyframes breathe { 50% { opacity: .2; transform: scale(1.1); } }
+.track-wrap.live::before { opacity: .38; transition: opacity .8s ease; }   /* fade IN: a bit quicker */
+.track-wrap.awake::before { animation: breathe 3.4s ease-in-out infinite; }
+@keyframes breathe { 50% { transform: scale(1.12); } }   /* scale only, so it never fights the fade */
 
 /* particles: start behind the card's center, drift out past its top and bottom edges */
-.emit { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .6s ease; }
-.track-wrap.live .emit { opacity: 1; }
+.emit { position: absolute; inset: 0; pointer-events: none;
+    opacity: 0; transition: opacity 1.4s ease; }               /* fade OUT */
+.track-wrap.live .emit { opacity: 1; transition: opacity .7s ease; }   /* fade IN */
+
 .emit i {
     position: absolute; left: var(--x); top: 50%;
     width: var(--s); height: var(--s); border-radius: 50%;
@@ -166,7 +170,7 @@ html.snap-y { scroll-snap-type: y mandatory; }
     opacity: 0; animation: drift var(--dur) ease-out var(--delay) infinite;
     animation-play-state: paused;
 }
-.track-wrap.live .emit i { animation-play-state: running; }
+.track-wrap.awake .emit i { animation-play-state: running; }   /* keep moving while fading out */
 @keyframes drift {
     0%   { opacity: 0; transform: translateY(0) scale(.5); }
     20%  { opacity: .9; }
@@ -221,5 +225,5 @@ html.snap-y { scroll-snap-type: y mandatory; }
 
 @media (max-width: 600px) { .track { flex-direction: column; } }
 @media (prefers-reduced-motion: reduce) {
-    .emit i, .track-wrap.live::before { animation: none; }
+    .emit i, .track-wrap.awake::before { animation: none; }
 }

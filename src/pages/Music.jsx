@@ -15,7 +15,7 @@ export default function Music() {
         <main>
             <div className="intro music-hero">
                 <h1>Music</h1>
-                <p>A collection of tracks (mostly WIP/demos) I made over time.<br />I'm not very proud of a lot of them, but I think this is a valuable<br />way to see how I've grown. (Listed in no particular order.)</p>
+                <p>A collection of tracks (mostly WIP/demos) I made over time.<br />I'm not very proud of a lot of them, but I think this is a valuable<br />way to see how I've grown.<br /><br />Scroll down and listen to some!</p>
             </div>
             <div className="tracklist">
                 {tracks.map((t) => (

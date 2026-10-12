@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 function fmt(s) {
     if (s == null || !Number.isFinite(s)) return "--:--";
@@ -37,6 +37,15 @@ function Slider({ value, onSeek }) {
 
 export default function TrackCard({ t, active, playing, time, length, onToggle, onSeek }) {
     const live = active && playing;
+
+    // stays true for a moment after pausing so the fade-out can finish
+    const [awake, setAwake] = useState(live);
+    useEffect(() => {
+        if (live) { setAwake(true); return; }
+        const id = setTimeout(() => setAwake(false), 1700);   // a little longer than the fade-out
+        return () => clearTimeout(id);
+    }, [live]);
+
     const cols = t.colors.length > 1 ? t.colors : [t.colors[0], t.colors[0]];
     const value = length ? Math.min(1, time / length) : 0;
 
@@ -66,7 +75,7 @@ export default function TrackCard({ t, active, playing, time, length, onToggle, 
 
     return (
         <article
-            className={`track-wrap ${active ? "active" : ""} ${live ? "live" : ""}`}
+            className={`track-wrap ${active ? "active" : ""} ${live ? "live" : ""} ${awake ? "awake" : ""}`}
             style={{
                 "--c1": cols[0],
                 "--c2": cols[1],
