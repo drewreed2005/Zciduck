@@ -33,7 +33,7 @@ export const tracks = [
     {
         id: "rainstorm-brainstorm",
         title: "Rainstorm Brainstorm",
-        description: "I always considered this the \"first song\" I ever made, but it's really just the first song I was proud of by the time I finished it. Having access to a real DAW for the first time let me expand beyond the sounds I was stuck with on sheet music composition sites, but also opened to door to some lazy behavior like heavily repeating instrumental sections. All things considered, I think younger me did a pretty good job with this song. Putting a flanger on top of percussion might be an underrated strat.",
+        description: "I always considered this the \"first song\" I ever made, but it's really just the first song I was proud of by the time I finished it. Having access to a real DAW for the first time let me expand beyond the sounds I was stuck with on sheet music composition sites, but also opened to door to some lazy behavior like heavily repeating instrumental sections. All things considered, I think younger me did a pretty good job with this song. Flanging the percussion turned out pretty good.",
         src: "/projects/music/rainstorm-brainstorm.mp3",
         colors: ["#751ec1", "#104cff", "#2fc3dd"],
 
@@ -93,7 +93,7 @@ export const tracks = [
     {
         id: "the-temple",
         title: "The Temple (0)",
-        description: "This was made for an underwater temple dungeon in my first game concept in high school (the same one as the goofy alien song). The sound quality and instruments warping between sections was essentially a proof-of-concept for how the music would adapt as you sunk deeper into the temple. I'm not super happy with the drums at this point, nor with the piano melody that resolves sort of generically. I think this song had a lot of potential and shows the sorts of ambitious composition ideas I had for game concepts. (In this case, adaptive music.)",
+        description: "This was made for an underwater temple dungeon in my first game concept in high school. The sound quality and instruments warping between sections was essentially a proof-of-concept for how the music would adapt as you sunk deeper into the temple. I'm not super happy with the drums at this point, nor with the piano melody that resolves sort of generically. I think this song had a lot of potential and shows the sorts of ambitious composition ideas I had for game concepts. (In this case, adaptive music.)",
         src: "/projects/music/the-temple.mp3",
         colors: ["#33e8ca", "#209fc9", "#6077e8", "#d5a65a"],
 
@@ -123,7 +123,7 @@ export const tracks = [
     {
         id: "goofy-enemy",
         title: "(Battle with a) Goofy Enemy",
-        description: "This song, which I made for a weird alien character in my first game idea from high school, was one of my biggest fluke successes. There were a lot of weird instrumental choices in this one and I think it's kind of a miracle that it sounds as good as (I think) it does. My favorite part is that, at the very end there, you can tell I got to record my guitar with relatively clean audio quality; I haven't managed to achieve that since, and you'll see what I mean if you scroll a little further. Someday, I'll figure the settings out.",
+        description: "This song, which I made for a weird alien character in my first game idea from high school, was one of my biggest fluke successes. There were a lot of weird instrumental choices in this one and I think it's kind of a miracle that it sounds as good as (I think) it does. My favorite part is that, at the very end there, you can tell I got to record my guitar with relatively clean audio quality; I haven't managed to achieve that since (see \"Handshake\"). Someday, I'll figure the settings out.",
         src: "/projects/music/goofy-enemy.mp3",
         colors: ["#67c972", "#fff757", "#e50101"],
 
@@ -168,7 +168,7 @@ export const tracks = [
     {
         id: "i-dont-like-this",
         title: "I Don't Like This",
-        description: "I don't mind this, actually, but it's not great. This was for one of the inciting events of my first game concept; you can glean the event's suspicious/covert tone from the song. This is another song cheapened by the instruments and the amount of dead air, but the violin tremelo in the back was a good decision and I like the pitch bending experimentation with the organ. The melody is nothing of note and I think the piano \"solo\" sounds like it was thrown in to fill fime. (It probably was.)",
+        description: "I don't mind this, actually, but it's not great. This was for one of the inciting events of my first game concept. This is another song cheapened by the instruments and the amount of dead air, but the violin tremelo in the back was a good decision and I like the pitch bending experimentation with the organ. The melody is nothing of note and I think the piano \"solo\" sounds like it was thrown in to fill fime. (It probably was.)",
         src: "/projects/music/i-dont-like-this.mp3",
         colors: ["#51514f", "#765307", "#97ac94"],
 
