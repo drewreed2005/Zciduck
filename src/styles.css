@@ -23,6 +23,10 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
 .nav a { color: var(--text); margin-left: 1.5rem; opacity: .7; }
 .nav a.active, .nav a:hover { opacity: 1; text-decoration: none; }
 .nav .brand { margin: 0; font-weight: 700; opacity: 1; }
+/* hiding for birthday page */
+body:has(.birthday) .nav {
+    display: none;
+}
 
 /* simple page styling */
 .home { min-height: 100vh; display: grid; align-content: center; padding: 0 clamp(1.5rem, 8vw, 8rem); }
