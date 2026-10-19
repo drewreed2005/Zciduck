@@ -219,7 +219,7 @@
 }
 
 .secret-panel img {
-    width: 72vw;
+    max-width: 600px;
 }
 
 .success {
