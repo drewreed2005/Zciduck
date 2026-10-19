@@ -343,7 +343,7 @@ export default function Birthday() {
             {secret && (
                 <section className="panel secret-panel">
                     <img src="/birthday/images/strange-unusual-animal.png"/>
-                    This is a real actual animal on God's beautiful green planet
+                    Who put this here
                 </section>
             )}
 
